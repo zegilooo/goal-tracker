@@ -4,9 +4,9 @@ import moment from 'moment'
 import goalTrackerReducer from './reducers'
 
 const DEFAULT_STATE = {
-  currentUser: {
-    email: 'christophe@delicious-insights.com'
-  },
+  // currentUser: {
+  //   email: 'christophe@delicious-insights.com'
+  // },
   goals: [
     { id: 0, name: 'Apprendre React', target: 5, units: 'aspects' },
     { id: 1, name: 'Apprendre Redux', target: 2, units: 'vidéos' },
@@ -40,7 +40,11 @@ const DEFAULT_STATE = {
   ]
 }
 
-const store = createStore(goalTrackerReducer, DEFAULT_STATE)
+const enhancer = typeof window !== 'undefined' && window.devToolsExtension
+  ? window.devToolsExtension()
+  : (x) => x
+
+const store = createStore(goalTrackerReducer, DEFAULT_STATE, enhancer)
 
 export const loggedIn = () => !!store.getState().currentUser
 export default store

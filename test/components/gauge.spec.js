@@ -8,9 +8,18 @@ import Gauge from '../../src/components/gauge'
 chai.use(chaiEnzyme())
 
 describe('<Gauge />', () => {
-  it('should render appropriately')
+  it('should render appropriately', () => {
+    const wrapper = shallow(<Gauge value={50} />)
 
-  it('should honor custom max')
+    expect(wrapper).to.have.prop('mode', 'determinate')
+    expect(wrapper).to.have.prop('max', 100)
+    expect(wrapper).to.have.prop('value', 50)
+    expect(wrapper.prop('style')).to.deep.equal({ height: 8 })
+  })
 
-  // Votre code de test en fonctions fléchées de rappel sur ces `it`…
+  it('should honor custom max', () => {
+    const wrapper = shallow(<Gauge value={50} max={75} />)
+
+    expect(wrapper).to.have.prop('max', 75)
+  })
 })

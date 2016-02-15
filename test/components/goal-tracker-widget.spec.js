@@ -14,14 +14,40 @@ chai.use(chaiEnzyme())
 
 describe('<GoalTrackerWidget />', () => {
   describe('when not completed', () => {
-    it('should render appropriately')
+    it('should render appropriately', () => {
+      const goal = { id: 0, name: 'My goal', target: 42, units: 'wombats' }
+      const progresses = [0, 1, 21]
+      progresses.forEach((progress) => {
+        const wrapper = shallow(<GoalTrackerWidget goal={goal} progress={progress} />)
 
-    it('should trigger its onProgress on click')
+        expect(wrapper.find('h2')).to.have.text(goal.name)
+        expect(wrapper).to.contain(<Gauge value={progress} max={goal.target} />)
+        expect(wrapper).to.contain.text(`${progress} ${goal.units} sur ${goal.target}`)
+        expect(wrapper).to.contain(<ContentAdd />)
+      })
+    })
+
+    it('should trigger its onProgress on click', () => {
+      const goal = { id: 0, name: 'My goal', target: 42, units: 'wombats' }
+      const progress = 21
+      const onProgress = sinon.spy()
+      const wrapper = shallow(<GoalTrackerWidget goal={goal} progress={progress} onProgress={onProgress} />)
+
+      wrapper.find('FloatingActionButton').simulate('click')
+      expect(onProgress.calledOnce).to.equal(true, 'onProgress was not called')
+    })
   })
 
-  describe('when completed (or exceeeded)', () => {
-    it('should render appropriately')
-  })
+  describe('when completed (or exceeded)', () => {
+    it('should render appropriately', () => {
+      const goal = { id: 0, name: 'My goal', target: 42, units: 'wombats' }
+      const extras = [0, 10]
+      extras.forEach((extra) => {
+        const wrapper = shallow(<GoalTrackerWidget goal={goal} progress={goal.target + extra} />)
 
-  // Votre code de test en fonctions fléchées de rappel sur ces `it`…
+        expect(wrapper).not.to.contain(<ContentAdd />)
+        expect(wrapper).to.contain(<ActionThumbUp />)
+      })
+    })
+  })
 })

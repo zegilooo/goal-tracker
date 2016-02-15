@@ -37,4 +37,5 @@ const state = {
   ]
 }
 
+export const loggedIn = () => !!state.currentUser
 export default state

@@ -1,7 +1,11 @@
-import { createStore } from 'redux'
+import { createStore, compose } from 'redux'
 import moment from 'moment'
+import { persistentStore } from 'redux-pouchdb'
+import PouchDB from 'pouchdb'
 
 import goalTrackerReducer from './reducers'
+
+const db = new PouchDB('goal-tracker')
 
 const DEFAULT_STATE = {
   currentUser: {
@@ -41,9 +45,12 @@ const DEFAULT_STATE = {
   ]
 }
 
-const enhancer = typeof window !== 'undefined' && window.devToolsExtension
-  ? window.devToolsExtension()
-  : (x) => x
+const enhancer = compose(
+  persistentStore(db),
+  typeof window !== 'undefined' && window.devToolsExtension
+    ? window.devToolsExtension()
+    : (x) => x
+)
 
 const store = createStore(goalTrackerReducer, DEFAULT_STATE, enhancer)
 

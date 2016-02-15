@@ -1,4 +1,5 @@
 import { combineReducers } from 'redux'
+import { persistentReducer } from 'redux-pouchdb'
 
 import { CLOSE_DAY } from '../action-creators'
 import closeDay from './close-day'
@@ -21,4 +22,4 @@ function goalTrackerReducer (state = coreReducer(undefined, {}), action) {
   }
 }
 
-export default goalTrackerReducer
+export default persistentReducer(goalTrackerReducer)

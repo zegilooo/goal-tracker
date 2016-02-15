@@ -1,4 +1,5 @@
 import { connect } from 'react-redux'
+import { Link } from 'react-router'
 import React, { Component } from 'react'
 
 import '../styles/tracker-screen.styl'
@@ -50,10 +51,10 @@ export class TrackerScreen extends Component {
         </CardText>
         <CardActions>
           <RaisedButton label='Historique' secondary
-            icon={<HistoryIcon />} linkButton
+            icon={<HistoryIcon />} linkButton containerElement={<Link to='/history' />}
           />
           <RaisedButton label='Paramètres'
-            icon={<SettingsIcon />} linkButton
+            icon={<SettingsIcon />} linkButton containerElement={<Link to='/settings' />}
           />
         </CardActions>
       </Card>

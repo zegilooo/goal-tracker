@@ -8,7 +8,7 @@
     "deploy": "surge --project public",
     "doc": "rimraf doc && groc",
     "lint": "standard --verbose | snazzy",
-    "postinstall": "rimraf .jshintrc .jshintignore",
+    "postinstall": "rimraf .jshintrc .jshintignore && npm run doc",
     "start": "hjs-dev-server",
     "test": "mocha",
     "test:cov": "nyc --reporter=lcov npm test && rimraf .nyc_output",

@@ -18,6 +18,7 @@ export function updateGoal (id, name, target, units) {
 
 // Using the app everyday
 
+export const CLOSE_DAY = 'CLOSE_DAY'
 export const CLEAR_HISTORY = 'HISTORY_CLEAR'
 export const LOGIN = 'AUTH_LOGIN'
 export const LOGOUT = 'AUTH_LOGOUT'
@@ -25,6 +26,10 @@ export const PROGRESS = 'PROGRESS'
 
 export function clearHistory () {
   return { type: CLEAR_HISTORY }
+}
+
+export function closeDay () {
+  return { type: CLOSE_DAY }
 }
 
 export function logIn (email, password) {

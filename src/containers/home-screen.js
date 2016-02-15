@@ -4,6 +4,7 @@ import LoginScreen from './login-screen'
 
 export class HomeScreen extends Component {
   render () {
+    // Vos modifs ici
     return <LoginScreen />
   }
 }

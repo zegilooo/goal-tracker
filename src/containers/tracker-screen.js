@@ -11,6 +11,7 @@ import SettingsIcon from 'material-ui/svg-icons/action/settings'
 import { formatDate, getDayCounts } from '../lib/helpers'
 import Gauge from '../components/gauge'
 import GoalTrackerWidget from '../components/goal-tracker-widget'
+import { progressOnGoal } from '../action-creators'
 
 export class TrackerScreen extends Component {
   overallProgress () {
@@ -21,7 +22,7 @@ export class TrackerScreen extends Component {
   }
 
   render () {
-    const { goals, todaysProgress } = this.props
+    const { goals, todaysProgress, dispatch } = this.props
     return (
       <Card className='goalTracker'>
         <CardTitle
@@ -39,6 +40,7 @@ export class TrackerScreen extends Component {
                       key={goal.id}
                       goal={goal}
                       progress={progress}
+                      onProgress={() => dispatch(progressOnGoal(goal.id))}
                     />
                   )
                 })

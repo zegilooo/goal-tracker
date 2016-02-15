@@ -1,3 +1,4 @@
+import { connect } from 'react-redux'
 import React, { Component } from 'react'
 
 import '../styles/tracker-screen.styl'
@@ -58,4 +59,6 @@ export class TrackerScreen extends Component {
   }
 }
 
-export default TrackerScreen
+const mapStateToPops = ({ goals, todaysProgress }) => ({ goals, todaysProgress })
+
+export default connect(mapStateToPops)(TrackerScreen)

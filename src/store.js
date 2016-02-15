@@ -1,6 +1,9 @@
+import { createStore } from 'redux'
 import moment from 'moment'
 
-const state = {
+import goalTrackerReducer from './reducers'
+
+const DEFAULT_STATE = {
   currentUser: {
     email: 'christophe@delicious-insights.com'
   },
@@ -37,5 +40,7 @@ const state = {
   ]
 }
 
-export const loggedIn = () => !!state.currentUser
-export default state
+const store = createStore(goalTrackerReducer, DEFAULT_STATE)
+
+export const loggedIn = () => !!store.getState().currentUser
+export default store

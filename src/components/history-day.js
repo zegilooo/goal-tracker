@@ -5,7 +5,7 @@ import { List } from 'material-ui/List'
 import Subheader from 'material-ui/Subheader'
 
 import { formatDate } from '../lib/helpers'
-import { GoalPropType } from '../prop-types'
+import { GoalPropType, HistoryDayStatsPropType } from '../prop-types'
 import HistoryDayGoal from './history-day-goal'
 
 const HistoryDay = ({ goals, stats: { date, progresses } }) => (
@@ -24,7 +24,8 @@ const HistoryDay = ({ goals, stats: { date, progresses } }) => (
 )
 
 HistoryDay.propTypes = {
-  goals: PropTypes.arrayOf(GoalPropType).isRequired
+  goals: PropTypes.arrayOf(GoalPropType).isRequired,
+  stats: HistoryDayStatsPropType
 }
 
 export default HistoryDay

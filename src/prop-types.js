@@ -6,3 +6,10 @@ export const GoalPropType = PropTypes.shape({
   target: PropTypes.number.isRequired,
   units: PropTypes.string.isRequired
 })
+
+export const HistoryDayStatsPropType = PropTypes.shape({
+  date: PropTypes.string.isRequired,
+  progresses: PropTypes.objectOf(PropTypes.arrayOf(
+    PropTypes.number
+  )).isRequired
+})

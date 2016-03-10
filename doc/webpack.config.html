@@ -1,0 +1,23 @@
+<!DOCTYPE html><html lang="en"><head><title>webpack.config</title></head><meta http-equiv="Content-Type" content="text/html; charset=utf-8"><meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0"><meta name="groc-relative-root" content=""><meta name="groc-document-path" content="webpack.config"><meta name="groc-project-path" content="webpack.config.js"><link rel="stylesheet" type="text/css" media="all" href="assets/style.css"><script type="text/javascript" src="assets/behavior.js"></script><body><div id="meta"><div class="file-path">webpack.config.js</div></div><div id="document"><div class="segment"><div class="comments "><div class="wrapper"><h1 id="configuration-webpack">Configuration Webpack</h1></div></div></div><div class="segment"><div class="comments "><div class="wrapper"><p>La configuration de Webpack peut être assez velue…
+Pour simplifier notre propre code de configuration,
+une bonne solution consiste à passer par
+<a href="https://github.com/HenrikJoreteg/hjs-webpack">hjs-webpack</a>,
+une surcouche de Henrik Joreteg.  On peut se contenter
+d’indiquer de quel fichier source partir, où publier
+les fichiers de production en cas de build, éventuellement
+si on souhaite du HTTPS, et on est prêts à partir.
+La simple présence des principaux plugins et loaders
+Webpack dans le fichier <code>package.json</code> et le dossier
+<code>node_modules</code> entraînera leur configuration automatique.</p></div></div><div class="code"><div class="wrapper"><span class="hljs-keyword">var</span> getConfig = <span class="hljs-built_in">require</span>(<span class="hljs-string">'hjs-webpack'</span>)
+<span class="hljs-keyword">var</span> OfflinePlugin = <span class="hljs-built_in">require</span>(<span class="hljs-string">'offline-plugin'</span>)
+
+<span class="hljs-keyword">var</span> config = getConfig({
+  <span class="hljs-keyword">in</span>: <span class="hljs-string">'src/index.js'</span>,
+  out: <span class="hljs-string">'public'</span>,
+  clearBeforeBuild: <span class="hljs-string">'!(favicon.ico)'</span>,
+  https: process.argv.indexOf(<span class="hljs-string">'--https'</span>) !== -<span class="hljs-number">1</span>
+})</div></div></div><div class="segment"><div class="comments "><div class="wrapper"><p>C’est un plugin non pris en charge automatiquement par
+hjs-webpack, on l’ajoute donc manuellement à la liste
+définie par celui-ci.</p></div></div><div class="code"><div class="wrapper">config.plugins.push(<span class="hljs-keyword">new</span> OfflinePlugin())
+
+<span class="hljs-built_in">module</span>.exports = config</div></div></div></div></body></html>

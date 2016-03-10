@@ -38,7 +38,10 @@
       "describe",
       "it"
     ],
-    "parser": "babel-eslint"
+    "parser": "babel-eslint",
+    "ignore": [
+      "/doc/"
+    ]
   },
   "pre-commit": [
     "lint",

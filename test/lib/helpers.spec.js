@@ -1,3 +1,6 @@
+// Utilitaires (spec)
+// ==================
+
 import { expect } from 'chai'
 import { formatDate, getCompletionRatio, getDayCounts } from '../../src/lib/helpers'
 import moment from 'moment'

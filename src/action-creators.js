@@ -5,15 +5,15 @@ export const REMOVE_GOAL = 'GOALS_DEL'
 export const UPDATE_GOAL = 'GOALS_UPDATE'
 
 export function addGoal (name, target, units) {
-  // Votre code ici
+  return { type: ADD_GOAL, name, target, units }
 }
 
 export function removeGoal (id) {
-  // Votre code ici
+  return { type: REMOVE_GOAL, id }
 }
 
 export function updateGoal (id, name, target, units) {
-  // Votre code ici
+  return { type: UPDATE_GOAL, id, name, target, units }
 }
 
 // Using the app everyday

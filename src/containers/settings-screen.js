@@ -43,8 +43,8 @@ class SettingsScreen extends Component {
     this.setState({ goal: {}, dialog: null })
   }
 
-  componentWillReceiveProps ({ currentUser }) {
-    if (currentUser == null) {
+  componentWillReceiveProps ({ currentUser: { loginState } }) {
+    if (loginState !== 'success') {
       history.push('/')
     }
   }

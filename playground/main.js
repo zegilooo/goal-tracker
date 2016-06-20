@@ -2,6 +2,8 @@ import express from 'express'
 import { createServer } from 'http'
 import logger from 'morgan'
 import { json as formBodyParser } from 'body-parser'
+import PouchDB from 'pouchdb'
+import pouchDBMiddleware from 'express-pouchdb'
 
 import 'colors'
 
@@ -9,10 +11,12 @@ const app = express()
 const server = createServer(app)
 
 app.use(function (req, res, next) {
-  res.header("Access-Control-Allow-Origin", "*")
-  res.header("Access-Control-Allow-Headers", "Origin, X-Requested-With, Content-Type, Accept")
+  res.header('Access-Control-Allow-Origin', '*')
+  res.header('Access-Control-Allow-Headers', 'Origin, X-Requested-With, Content-Type, Accept')
   next()
 })
+
+app.use('/db', pouchDBMiddleware(PouchDB.defaults({ prefix: 'pouchdb-files/' })))
 
 app.use(formBodyParser())
 app.use(logger('dev'))

@@ -7,6 +7,10 @@ import thunkMiddleware from 'redux-thunk'
 import goalTrackerReducer from './reducers'
 
 const db = new PouchDB('goal-tracker')
+const serverDB = new PouchDB('http://localhost:3001/db', {
+  ajax: { withCredentials: false }
+})
+db.replicate.to(serverDB)
 
 const DEFAULT_STATE = {
   currentUser: {

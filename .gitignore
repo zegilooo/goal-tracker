@@ -422,3 +422,5 @@ _Pvt_Extensions
 
 # In case Tern is not properly configured
 .tern-port
+pouchdb-files
+log.txt
